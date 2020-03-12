@@ -125,7 +125,7 @@ usuarioRoutes.get('/', autentificacion_1.default, function (req, res) {
 //===================================================================
 // Eliminar usuario
 //===================================================================
-usuarioRoutes.delete('/', autentificacion_1.default, function (req, res) {
+usuarioRoutes.delete('/:id', autentificacion_1.default, function (req, res) {
     var id = req.headers.id;
     var admin = req.body.usuario;
     if (admin.role !== 'ADMIN_ROLE') {

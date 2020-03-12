@@ -149,7 +149,7 @@ usuarioRoutes.get('/', verificatoken, (req: Request, res: Response) => {
 // Eliminar usuario
 //===================================================================
 
-usuarioRoutes.delete('/', verificatoken,(req: Request, res: Response) => {
+usuarioRoutes.delete('/:id', verificatoken,(req: Request, res: Response) => {
     const id = req.headers.id;
     const admin = req.body.usuario;
 
