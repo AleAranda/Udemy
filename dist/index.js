@@ -11,6 +11,8 @@ var cors_1 = __importDefault(require("cors"));
 //importar rutas
 var usuario_1 = __importDefault(require("./rutas/usuario"));
 var login_1 = __importDefault(require("./rutas/login"));
+var medico_1 = __importDefault(require("./rutas/medico"));
+var hospital_1 = __importDefault(require("./rutas/hospital"));
 var server = new server_1.default();
 //BodyParser
 server.app.use(body_parser_1.default.urlencoded({ extended: true }));
@@ -20,6 +22,8 @@ server.app.use(cors_1.default({ origin: true, credentials: true }));
 // seteo de rutas
 server.app.use('/usuario', usuario_1.default);
 server.app.use('/login', login_1.default);
+server.app.use('/medico', medico_1.default);
+server.app.use('/hospital', hospital_1.default);
 //Conexion a la base de datos
 mongoose_1.default.connect('mongodb://localhost/nematronix', { useCreateIndex: true, useNewUrlParser: true }, function (err) {
     if (err)

@@ -8,7 +8,9 @@ import cors from 'cors';
 
 //importar rutas
 import usuarioRoutes from './rutas/usuario';
-import loginRoutes from './rutas/login'
+import loginRoutes from './rutas/login';
+import medicoRoutes from './rutas/medico';
+import hospitalRoutes from './rutas/hospital'
 
 
 const server = new Server ();
@@ -27,7 +29,10 @@ server.app.use( cors ({ origin: true, credentials: true}) );
 
 // seteo de rutas
 server.app.use('/usuario', usuarioRoutes);
-server.app.use('/login', loginRoutes)
+server.app.use('/login', loginRoutes);
+server.app.use('/medico', medicoRoutes);
+server.app.use('/hospital', hospitalRoutes);
+
 
 
 
