@@ -12,7 +12,13 @@ const hospitalRoutes = Router();
 
 hospitalRoutes.get('/', verificatoken, (req: Request, res: Response) => {
 
+    var desde = req.query.desde || 0;
+    desde = Number(desde)
+
     Hospital.find({}, 'nombre ')
+            .skip(desde)                                
+            .limit(5)                                    //LImite de la Paginacion
+            .populate('usuario', 'nombre apellido')      //Funciona para ver mas datos en la peticion
             .exec( (err: any, hospitalDB) => {
                 if ( err ) {
                     return res.status(500).json({

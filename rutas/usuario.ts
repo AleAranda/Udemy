@@ -107,7 +107,7 @@ usuarioRoutes.put('/', verificatoken, (req: Request, res: Response) => {
 
 
 //===================================================================
-// Obtener usuarios
+// Obtener usuarios y Paginacion en su busqueda
 //===================================================================
 
 usuarioRoutes.get('/', verificatoken, (req: Request, res: Response) => {
@@ -119,9 +119,14 @@ usuarioRoutes.get('/', verificatoken, (req: Request, res: Response) => {
             mensaje: 'Necesitas ser administrador para acceder a esta seccion'
         });
     }
+ 
+    var desde = req.query.desde || 0;
+    desde = Number(desde)
 
     Usuario.find({}, 'nombre apellido email')
-            .exec( (err: any, usuariosDB) => {
+            .skip(desde)                        //========================================
+            .limit(5)                           //  Paginacion en Busqueda
+            .exec( (err: any, usuariosDB) => {  //========================================
                 if ( err ) {
                     return res.status(500).json({
                         ok: false,

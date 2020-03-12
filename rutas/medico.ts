@@ -118,7 +118,12 @@ medicoRoutes.get('/', verificatoken, (req: Request, res: Response) => {
         });
     }
 
+    var desde = req.query.desde || 0;
+    desde = Number(desde)
+
     Medico.find({}, 'nombre apellido email')
+            .skip(desde)
+            .limit(5)
             .exec( (err: any, medicosDB) => {
                 if ( err ) {
                     return res.status(500).json({

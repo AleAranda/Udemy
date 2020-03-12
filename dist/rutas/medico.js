@@ -97,7 +97,11 @@ medicoRoutes.get('/', autentificacion_1.default, function (req, res) {
             mensaje: 'Necesitas ser administrador para acceder a esta seccion'
         });
     }
+    var desde = req.query.desde || 0;
+    desde = Number(desde);
     medico_1.Medico.find({}, 'nombre apellido email')
+        .skip(desde)
+        .limit(5)
         .exec(function (err, medicosDB) {
         if (err) {
             return res.status(500).json({

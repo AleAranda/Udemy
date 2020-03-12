@@ -11,7 +11,12 @@ var hospitalRoutes = express_1.Router();
 // Obtener Hospital
 //===================================================================
 hospitalRoutes.get('/', autentificacion_1.default, function (req, res) {
+    var desde = req.query.desde || 0;
+    desde = Number(desde);
     hospital_1.Hospital.find({}, 'nombre ')
+        .skip(desde)
+        .limit(5) //LImite de la Paginacion
+        .populate('usuario', 'nombre apellido') //Funciona para ver mas datos en la peticion
         .exec(function (err, hospitalDB) {
         if (err) {
             return res.status(500).json({

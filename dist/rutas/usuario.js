@@ -90,7 +90,7 @@ usuarioRoutes.put('/', autentificacion_1.default, function (req, res) {
     });
 });
 //===================================================================
-// Obtener usuarios
+// Obtener usuarios y Paginacion en su busqueda
 //===================================================================
 usuarioRoutes.get('/', autentificacion_1.default, function (req, res) {
     var admin = req.body.usuario;
@@ -100,7 +100,11 @@ usuarioRoutes.get('/', autentificacion_1.default, function (req, res) {
             mensaje: 'Necesitas ser administrador para acceder a esta seccion'
         });
     }
+    var desde = req.query.desde || 0;
+    desde = Number(desde);
     usuario_1.Usuario.find({}, 'nombre apellido email')
+        .skip(desde) //========================================
+        .limit(5) //  Paginacion en Busqueda
         .exec(function (err, usuariosDB) {
         if (err) {
             return res.status(500).json({
