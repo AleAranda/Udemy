@@ -12,6 +12,7 @@ var RolesValidos = {
 exports.usuarioSchema = new mongoose_1.Schema({
     nombre: { type: String, required: [true, 'Nombre necesario'] },
     apellido: { type: String, required: [true, 'Apellido necesario'] },
+    email: { type: String, unique: true, required: [true, 'Email debe ser Unico'] },
     img: { type: String, unique: false, required: false },
     password: { type: String, required: [true, 'la contraseña es necesaria'] },
     rol: { type: String, enum: RolesValidos, default: 'USER_ROL' },

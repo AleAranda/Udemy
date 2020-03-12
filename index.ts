@@ -5,7 +5,7 @@ import bodyParser  from'body-parser';
 import cors from 'cors';
 
 //importar rutas
-
+import usuarioRoutes from './rutas/usuario';
 
 
 const server = new Server ();
@@ -19,7 +19,7 @@ server.app.use( bodyParser.json());
 server.app.use( cors ({ origin: true, credentials: true}) );
 
 // seteo de rutas
-
+server.app.use('/usuario', usuarioRoutes);
 
 
 //conexion a la base de datos
